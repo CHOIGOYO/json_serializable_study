@@ -1,6 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:json_serializable_study/user.dart';
 
 void main(){runApp(MyApp());}
 
@@ -21,35 +21,15 @@ class JSonTest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String json = '{"name":"최고요","email":"choigoyo.q7@gmail.com","created_time":20230000}';
+    String json = '{"name":"최고요","email":"choigoyo.q7@gmail.com","created_time":20230000,"address":{"street":"춘의동","city":"부천시"}}';
     Map<String, dynamic> userMap = jsonDecode(json);
     var user = User.fromJson(userMap);
     var tojson = user.toJson();
     return Scaffold(
       body: Center(
-        child: Text(' name : ${user.name} \n email : ${user.email} \n created_time : ${user.createdTime} \n to json Data : ${tojson} \n '),
+        child: Text(' name : ${user.name} \n email : ${user.email} \n created_time : ${user.createdTime} \n 동 : ${user.address.street} \n 시 : ${user.address.city} \n to json Data : ${tojson} \n '),
       ),
     );
   }
 }
 
-// model
-class User{
-  final String name;
-  final String email;
-  final int createdTime;
-
-  User(this.name, this.email, this.createdTime);
-
-  User.fromJson(Map<String, dynamic> json)
-      : name = json['name'],
-        email = json['email'],
-        createdTime = json['created_time'];
-
-  Map<String, dynamic> toJson() => {
-    'name': name,
-    'email': email,
-    'created_time': createdTime,
-  };
-
-}
