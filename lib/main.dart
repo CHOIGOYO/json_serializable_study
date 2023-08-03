@@ -24,9 +24,10 @@ class JSonTest extends StatelessWidget {
     String json = '{"name":"최고요","email":"choigoyo.q7@gmail.com","created_time":20230000}';
     Map<String, dynamic> userMap = jsonDecode(json);
     var user = User.fromJson(userMap);
+    var tojson = user.toJson();
     return Scaffold(
       body: Center(
-        child: Text(' name : ${user.name} \n email : ${user.email} \n created_time : ${user.createdTime} \n '),
+        child: Text(' name : ${user.name} \n email : ${user.email} \n created_time : ${user.createdTime} \n to json Data : ${tojson} \n '),
       ),
     );
   }
